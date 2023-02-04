@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import alaska from "./alaska.jpg"
+import londres from "./londres.jpg"
+import caluroso from "./caluroso.jpg"
+import templado from "./templado.jpg"
+
 import "./App.css"
+
 
 const API_KEY = "f461493aa4a95ca1c59a3c9bc58f6c8e";
 
 
 const App = () => {
  
-  const [city, setCity] = useState("london");
+  const [city, setCity] = useState("Argentina");
   
 
   interface WeatherData {
@@ -17,6 +23,8 @@ const App = () => {
     name: string;
   }
   const [weather, setWeather] = useState<WeatherData>();
+  const [backgroundColor, setBackgroundColor] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +32,22 @@ const App = () => {
         `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
       );
 
-      setWeather(result.data);
+      setWeather(result.data)
+      if (result.data) {
+        if (result.data.main.temp >= 30) {
+          setBackgroundColor("#ff8a80");
+          setBackgroundImage(`url(${caluroso})`)
+        } else if (result.data.main.temp >= 20 && result.data.main.temp < 30) {
+          setBackgroundColor("#f9a825");
+          setBackgroundImage(`url(${templado})`)
+        } else if (result.data.main.temp === 0 || result.data.main.temp < -1) {
+          setBackgroundColor("blue");
+          setBackgroundImage(`url(${alaska})`)
+        } else {
+          setBackgroundColor("#80d8ff");
+          setBackgroundImage(`url(${londres})`)
+        }
+      }
     };
 
     fetchData();
@@ -47,9 +70,10 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-    <input
-     placeholder="Search the internet..."
+    <div className="App" style={{ backgroundColor,backgroundImage,backgroundRepeat:"no-repeat",backgroundSize:"cover" }}>
+      <div className="container">
+      <input
+     placeholder="Write a County or a City..."
      type="text"
      value={city}
      name="text"
@@ -57,15 +81,18 @@ const App = () => {
      onChange={(e) => setCity(e.target.value)}
 
     />
-    <button onClick={fetchDataWithGeolocation}>Use my location</button>
-    {city && weather ? (
+</div>
+    
+ 
+    <button  onClick={fetchDataWithGeolocation}>  <svg xmlns="http://www.w3.org/2000/svg"  fill="white" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+  </svg>Use my location</button>
+    {city && weather && (
       <div>
         <p>Temperature: {weather.main.temp}°C</p>
         <p>City: {weather.name}</p>
       </div>
-    ) : (
-      <p>Escribe un Pais o una Ciudad</p>
-    )}
+    ) }
   </div>
   );
 };
