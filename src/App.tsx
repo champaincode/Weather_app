@@ -23,7 +23,7 @@ const App = () => {
     name: string;
   }
   const [weather, setWeather] = useState<WeatherData>();
-  const [backgroundColor, setBackgroundColor] = useState("");
+
   const [backgroundImage, setBackgroundImage] = useState("");
 
   useEffect(() => {
@@ -34,17 +34,17 @@ const App = () => {
 
       setWeather(result.data)
       if (result.data) {
-        if (result.data.main.temp >= 30) {
-          setBackgroundColor("#ff8a80");
+        if (result.data.main.temp >= 29) {
+  
           setBackgroundImage(`url(${caluroso})`)
         } else if (result.data.main.temp >= 20 && result.data.main.temp < 30) {
-          setBackgroundColor("#f9a825");
+   
           setBackgroundImage(`url(${templado})`)
         } else if (result.data.main.temp === 0 || result.data.main.temp < -1) {
-          setBackgroundColor("blue");
+
           setBackgroundImage(`url(${alaska})`)
         } else {
-          setBackgroundColor("#80d8ff");
+    
           setBackgroundImage(`url(${londres})`)
         }
       }
@@ -70,7 +70,7 @@ const App = () => {
   };
 
   return (
-    <div className="App" style={{ backgroundColor,backgroundImage,backgroundRepeat:"no-repeat",backgroundSize:"cover" }}>
+    <div className="App" style={{ backgroundImage,backgroundRepeat:"no-repeat",backgroundSize:"cover" }}>
       <div className="container">
       <input
      placeholder="Write a County or a City..."
