@@ -62,7 +62,7 @@ const App = () => {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
       const result = await axios.get<WeatherData>(
-        `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
       );
       setCity(result.data.name);
       setWeather(result.data);
