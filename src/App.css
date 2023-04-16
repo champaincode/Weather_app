@@ -7,19 +7,22 @@
   justify-content: center;
 }
 
-.container {
+.containerInput {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 20vh;
 }
 
-.input {
+.inputClima {
   width: 80%;
   padding: 1em;
   font-size: 1.5em;
   border: none;
-  border-bottom: 2px solid gray;
+  background: radial-gradient(178.94% 106.41% at 26.42% 106.41%, #FFF7B1 0%, rgba(255, 255, 255, 0) 71.88%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, #FFFFFF;
+  box-shadow: 0px 155px 62px rgba(0, 0, 0, 0.01), 0px 87px 52px rgba(0, 0, 0, 0.05), 0px 39px 39px rgba(0, 0, 0, 0.09), 0px 10px 21px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 23px;
+  transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
   outline: none;
   transition: all 0.2s ease-in-out;
 }
@@ -29,18 +32,13 @@
   transform: translateY(-3px);
 }
 
+.dateToday{
+  display: flex;
+  flex-direction: column;
 
-p {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
-  text-align: center;
-  line-height: 1.5;
-  padding: 10px 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px #ccc;
-  margin: 20px 0;
-  background-color: #f9f9f9;
+}
+.timenow{
+  margin-left: 10px;
 }
 
 button {
@@ -49,11 +47,14 @@ button {
   font-family: inherit;
   font-weight: 500;
   font-size: 17px;
+  margin-top: 20px;
   padding: 0.8em 1.3em 0.8em 0.9em;
-  color: white;
+  color: black;
   background: #ad5389;
-  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
-  border: none;
+  background: radial-gradient(178.94% 106.41% at 26.42% 106.41%, #FFF7B1 0%, rgba(255, 255, 255, 0) 71.88%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, #FFFFFF;
+  box-shadow: 0px 155px 62px rgba(0, 0, 0, 0.01), 0px 87px 52px rgba(0, 0, 0, 0.05), 0px 39px 39px rgba(0, 0, 0, 0.09), 0px 10px 21px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+
+  transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
   letter-spacing: 0.05em;
   border-radius: 16px;
   cursor: pointer;
